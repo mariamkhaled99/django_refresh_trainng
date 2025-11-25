@@ -8,7 +8,7 @@ class Command(BaseCommand):
     help = 'Insert sample data and run test queries'
 
     def handle(self, *args, **options):
-        # self.insert_sample_data()
+        self.insert_sample_data()
         self.test_queries()
 
     def insert_sample_data(self):
@@ -26,6 +26,10 @@ class Command(BaseCommand):
         patient3 = Patient.objects.create(first_name="Sarah", last_name="Johnson", date_of_birth="1985-03-15", gender='F', email="sarah@example.com")  
         patient4 = Patient.objects.create(first_name="Mike", last_name="Brown", date_of_birth="1992-07-20", gender='M', email="mike@example.com")  
         patient5 = Patient.objects.create(first_name="Emma", last_name="Davis", date_of_birth="1988-11-30", gender='F', email="emma@example.com")  
+        # Add similar names for icontains/trigram_similar tests
+        patient6 = Patient.objects.create(first_name="Helen", last_name="Mirren", date_of_birth="1970-04-12", gender='F', email="helen@example.com")
+        patient7 = Patient.objects.create(first_name="Helena", last_name="Joy", date_of_birth="1982-08-23", gender='F', email="helena@example.com")
+        patient8 = Patient.objects.create(first_name="Hélène", last_name="Smith", date_of_birth="1995-02-17", gender='F', email="helene@example.com")
     
         # Create Users for Doctors - Note: Multiple doctors with same first name "Ahmed"  
         user1 = User.objects.create_user(username="dr_ahmed1", first_name="Ahmed", last_name="Khaled", email="ahmed1@hospital.com", password="test1234")  

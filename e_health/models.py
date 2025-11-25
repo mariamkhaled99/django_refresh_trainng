@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 import uuid
 
+from e_health.fields import CommaSeparatedCharField
+
 # Create your models here.
 class Patient (models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -395,3 +397,13 @@ class Appointment (models.Model):
             delta = self.actual_end_time - self.actual_start_time
             return delta.total_seconds() / 60  # Return minutes
         return None
+    
+    
+    
+    
+    
+class TestCustomFielModel(models.Model):
+    number= models.IntegerField()
+    comma_separated_numbers = CommaSeparatedCharField(max_length=255, separator=',')
+    class Meta:
+        db_table = 'test_custom_model'
